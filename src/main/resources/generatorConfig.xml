@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 指定驱动jar包的路径 -->
+	<classPathEntry location="C:\Users\ztcly\.m2\repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar"></classPathEntry>
+	
+	<context id="context1">
+		<commentGenerator>
+			<!--去除自动生成注释  -->
+			<property name="suppressAllComments" value="true"></property>
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/shop"
+			userId="01" password="00000000z" >
+			<property name="nullCatalogMeansCurrent" value="true"/>
+			</jdbcConnection>
+			
+			
+		<!-- 如果是mysql8，很有可能出现把多个数据库中表名相同的都生成实体类和接口等，解决方法：在<jdbcConnection>中声明
+属性		
+
+		<property name="nullCatalogMeansCurrent" value="true"/>-->	
+			
+
+		<!--生成对应的实体类  -->	
+		<javaModelGenerator targetPackage="com.ztcly.shop.model"
+			targetProject="src/main/java" />
+		<!--sqlmapper文件  -->	
+		<sqlMapGenerator targetPackage="com.ztcly.shop.mapper" targetProject="src/main/java" />
+		<!--生成的接口  -->
+		<javaClientGenerator targetPackage="com.ztcly.shop.DAO"
+			targetProject="src/main/java" type="XMLMAPPER" />
+			<table schema="shop" tableName="good" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<!-- <table schema="" tableName="user" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="account" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="address" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="goods" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="goods_evaluate" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="integral" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="love" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="order" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="phone" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="shop_info" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
+		<table schema="" tableName="shopping" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+		</table> -->
+		
+	
+	</context>
+</generatorConfiguration>

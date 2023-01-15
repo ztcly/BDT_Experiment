@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztcly.shop.DAO.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ztcly.shop.model.Order" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="userid" property="userid" jdbcType="CHAR" />
+    <result column="shopid" property="shopid" jdbcType="CHAR" />
+    <result column="goodid" property="goodid" jdbcType="CHAR" />
+    <result column="goodquility" property="goodquility" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, shopid, goodid, goodquility
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ztcly.shop.model.Order" >
+    insert into order (id, userid, shopid, goodid, 
+      goodquility)
+    values (#{id,jdbcType=CHAR}, #{userid,jdbcType=CHAR}, #{shopid,jdbcType=CHAR}, #{goodid,jdbcType=CHAR}, 
+      #{goodquility,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztcly.shop.model.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="shopid != null" >
+        shopid,
+      </if>
+      <if test="goodid != null" >
+        goodid,
+      </if>
+      <if test="goodquility != null" >
+        goodquility,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=CHAR},
+      </if>
+      <if test="shopid != null" >
+        #{shopid,jdbcType=CHAR},
+      </if>
+      <if test="goodid != null" >
+        #{goodid,jdbcType=CHAR},
+      </if>
+      <if test="goodquility != null" >
+        #{goodquility,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztcly.shop.model.Order" >
+    update order
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=CHAR},
+      </if>
+      <if test="shopid != null" >
+        shopid = #{shopid,jdbcType=CHAR},
+      </if>
+      <if test="goodid != null" >
+        goodid = #{goodid,jdbcType=CHAR},
+      </if>
+      <if test="goodquility != null" >
+        goodquility = #{goodquility,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztcly.shop.model.Order" >
+    update order
+    set userid = #{userid,jdbcType=CHAR},
+      shopid = #{shopid,jdbcType=CHAR},
+      goodid = #{goodid,jdbcType=CHAR},
+      goodquility = #{goodquility,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

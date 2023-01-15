@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ztcly.shop.DAO.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.ztcly.shop.model.Shop" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="shopname" property="shopname" jdbcType="VARCHAR" />
+    <result column="shopimage" property="shopimage" jdbcType="VARCHAR" />
+    <result column="ownerid" property="ownerid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shopname, shopimage, ownerid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectByOwner" resultType="java.lang.String">
+    select id from shop where ownerid = #{ownerid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shop
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ztcly.shop.model.Shop" >
+    insert into shop (id, shopname, shopimage, 
+      ownerid)
+    values (#{id,jdbcType=CHAR}, #{shopname,jdbcType=VARCHAR}, #{shopimage,jdbcType=VARCHAR}, 
+      #{ownerid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztcly.shop.model.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopname != null" >
+        shopname,
+      </if>
+      <if test="shopimage != null" >
+        shopimage,
+      </if>
+      <if test="ownerid != null" >
+        ownerid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimage != null" >
+        #{shopimage,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztcly.shop.model.Shop" >
+    update shop
+    <set >
+      <if test="shopname != null" >
+        shopname = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimage != null" >
+        shopimage = #{shopimage,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        ownerid = #{ownerid,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztcly.shop.model.Shop" >
+    update shop
+    set shopname = #{shopname,jdbcType=VARCHAR},
+      shopimage = #{shopimage,jdbcType=VARCHAR},
+      ownerid = #{ownerid,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
